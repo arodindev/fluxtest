@@ -33,3 +33,23 @@ spec:
     kserve:
       storage:
         enableModelcar: "true"
+        metricsaggregator:
+          enableMetricAggregation: "false"
+          enablePrometheusScraping: "true"
+        controller:
+          # KServe deployment mode: "Serverless", "RawDeployment".
+          deploymentMode: "RawDeployment"
+          securityContext:
+            runAsNonRoot: true
+          containerSecurityContext:
+            runAsNonRoot: true
+          rbacProxy:
+            securityContext:
+              runAsNonRoot: true
+          gateway:
+            # Ingress domain for RawDeployment mode, for Serverless it is configured in Knative.
+            domain: mrt.com
+          nodeSelector:
+            agentpool: "normal"
+          modelmesh:
+            enabled: false
