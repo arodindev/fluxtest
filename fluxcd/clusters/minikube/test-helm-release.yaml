@@ -29,7 +29,3 @@ spec:
         kind: HelmRepository
         name: kserve
         namespace: flux-system
-      values:
-        kserve:
-          storage:
-            enableModelcar: true
