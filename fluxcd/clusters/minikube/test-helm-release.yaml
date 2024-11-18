@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: kserve-crd
-      version: "v0.13.0"
+      version: "v0.14.0"
       sourceRef:
         kind: HelmRepository
         name: kserve
@@ -24,10 +24,12 @@ spec:
   chart:
     spec:
       chart: kserve
-      version: "v0.13.0"
+      version: "v0.14.0"
       sourceRef:
         kind: HelmRepository
         name: kserve
         namespace: flux-system
       values:
-        enableModelcar: true
+        kserve:
+          storage:
+            enableModelcar: true
