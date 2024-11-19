@@ -1,9 +1,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: kserve
-  namespace: flux-system
+  name: kuberay
+  namespace: rayserve
 spec:
-  type: "oci"
   interval: 1m
-  url: oci://ghcr.io/kserve/charts
+  url: https://ray-project.github.io/kuberay-helm/
