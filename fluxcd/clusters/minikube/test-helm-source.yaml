@@ -1,8 +1,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: kuberay
-  namespace: rayserve
+  name: seldon
+  namespace: seldon-mesh
 spec:
   interval: 1m
-  url: https://ray-project.github.io/kuberay-helm/
+  url: https://seldonio.github.io/helm-charts

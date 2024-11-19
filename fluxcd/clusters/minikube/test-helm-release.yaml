@@ -1,18 +1,64 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: kuberay-operator
-  namespace: rayserve
+  name: seldon-core-v2-crds
+  namespace: seldon-mesh
 spec:
-  interval: 1m  
+  interval: 1m
   chart:
     spec:
-      chart: kuberay-operator
-      version: "1.1.0"
+      chart: seldon-core-v2-crds
       sourceRef:
         kind: HelmRepository
-        name: kuberay
-        namespace: rayserve
+        name: seldon
+        namespace: seldon-mesh
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: seldon-core-v2
+  namespace: seldon-mesh
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: seldon-core-v2-setup
+      sourceRef:
+        kind: HelmRepository
+        name: seldon
+        namespace: seldon-mesh
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: seldon-core-v2-runtime
+  namespace: seldon-mesh
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: seldon-core-v2-runtime
+      sourceRef:
+        kind: HelmRepository
+        name: seldon
+        namespace: seldon-mesh
   values:
-    image:
-      repository: quay.io/kuberay/operator:nightly
+    pipelinegateway:
+      disable: true
+    dataflow:
+      disable: true
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: seldon-core-v2-servers
+  namespace: seldon-mesh
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: seldon-core-v2-servers
+      sourceRef:
+        kind: HelmRepository
+        name: seldon
+        namespace: seldon-mesh
