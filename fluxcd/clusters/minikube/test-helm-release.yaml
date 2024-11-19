@@ -13,5 +13,6 @@ spec:
         kind: HelmRepository
         name: kuberay
         namespace: rayserve
-  install:
-    createNamespace: true
+  values:
+    image:
+      repository: quay.io/kuberay/operator:nightly
